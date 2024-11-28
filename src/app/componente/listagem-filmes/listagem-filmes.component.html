@@ -1,0 +1,70 @@
+<div id="back">
+  <div class="container">
+
+    <nav class="position-relative">
+      <a routerLink="/" id="btn-voltou">voltar</a>
+    </nav>
+
+    <h1 class="text-center my-4">Listagem de Filmes</h1>
+
+    
+    <div
+      class="d-flex justify-content-between align-items-center mb-4 flex-wrap"
+    >
+      <div class="input-group w-50">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="titulo"
+          placeholder="Digite o título do filme"
+        />
+        <button class="btn btn-primary ms-2" (click)="buscarFilmes()">
+          Buscar
+        </button>
+      </div>
+
+      
+      <div
+        *ngIf="filmes.length"
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4"
+      >
+        <div *ngFor="let filme of filmes" class="col">
+          <div class="card h-100">
+            <img
+              [src]="
+                filme.Poster !== 'N/A' ? filme.Poster : 'assets/placeholder.png'
+              "
+              class="card-img-top"
+              alt="{{ filme.Title }} Poster"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ filme.Title }}</h5>
+              <p class="card-text">Ano: {{ filme.Year }}</p>
+              <a
+                [routerLink]="['/filmes', filme.imdbID]"
+                class="btn btn-secondary btn-sm"
+              >
+                Ver Detalhes
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container text-center">
+       
+        <div *ngIf="!filmes.length && titulo" class="alert">
+          Nenhum filme encontrado.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+*ngIf="isButtonVisible" 
+class="btn btn-primary scroll-to-top"
+(click)="scrollToTop()"
+>
+↑ Voltar ao início
+</button>

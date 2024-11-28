@@ -1,0 +1,43 @@
+<div>
+  <header>
+    <h1 id="titulo">RECNOW</h1>
+  </header>
+
+  <section class="banner" id="home">
+    <h2 id="sub">Descubra seus filmes favoritos</h2>
+    <p id="sub1">
+      Explore uma vasta seleção de filmes e séries para todos os gostos!
+    </p>
+    <button routerLink="/filmes">Comece Agora</button>
+  </section>
+
+  <section class="catalogo" *ngIf="filmes.length > 0">
+    <h2 highlight="gray" class="highlighted-area">🎬 Catálogo de Filmes</h2>
+    <div class="filmes">
+      <div *ngFor="let filme of filmes" class="">
+        <div [routerLink]="['/filmes', filme.imdbID]" class="filme-card">
+          <img [src]="filme.Poster" alt="{{ filme.Title | uppercase }}" />
+          <div class="">
+            <h5 class="">{{ filme.Title }}</h5>
+            <p><strong>Gênero:</strong> {{ filme.Genre }}</p>
+            <button [routerLink]="['/filmes', filme.imdbID]" class="bttton">
+              Detalhes
+            </button>
+           
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2024 RECNOW | Feito com <span>❤️</span> para cinéfilos</footer>
+</div>
+
+<button
+*ngIf="isButtonVisible" 
+class="btn btn-primary scroll-to-top"
+(click)="scrollToTop()"
+>
+↑ Voltar ao Topo
+</button>

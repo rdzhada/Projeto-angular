@@ -1,0 +1,16 @@
+<div id="atras">
+<div class="container" *ngIf="filme">
+  <h1>{{ filme.Title }}</h1>
+  <img [src]="filme.Poster" alt="{{ filme.Title }}"/>
+  <p><strong>Ano:</strong> {{ filme.Released | dataBrasil }}</p>
+  <p><strong>Gênero:</strong> {{ filme.Genre }}</p>
+  <p><strong>Sinopse:</strong> {{ filme.Plot | resumoTexto:200}}</p>  
+  <a class ="trad" [href]="'https://translate.google.com/?sl=en&tl=pt&text=' + filme.Plot" target="_blank">
+    Traduzir Sinopse
+  </a>
+
+<div class="btn">
+
+<a routerLink="/" class="btn-voltar">Voltar para Home</a>
+</div>
+</div>
